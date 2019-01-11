@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get install -y geany geany-plugins-common \
                       libreoffice \
                       pinta \
-	              evince \
+	              evince && \
                       apt-get clean -y && \
        rm -f /headless/noVNC/index.html && \
        cp -a /headless/noVNC/vnc.html /headless/noVNC/index.html
