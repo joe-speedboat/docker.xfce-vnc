@@ -11,9 +11,10 @@ RUN apt-get update && \
                       libreoffice \
                       pinta \
 	              evince && \
-                      apt-get clean -y && \
-       rm -f /headless/noVNC/index.html && \
-       cp -a /headless/noVNC/vnc.html /headless/noVNC/index.html
+                      apt-get clean -y
+
+COPY /headless/noVNC/vnc.html /headless/noVNC/index.html
+COPY che.png /headless/.config/bg_sakuli.png
 
 # keep this from underlying container
 EXPOSE 6901/TCP
