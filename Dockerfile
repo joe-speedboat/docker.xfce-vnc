@@ -11,7 +11,6 @@ RUN apt-get update && \
                       libreoffice \
                       pinta \
 	              evince \
-		      torbrowser-launcher && \
                       apt-get clean -y && \
        rm -f /headless/noVNC/index.html && \
        cp -a /headless/noVNC/vnc.html /headless/noVNC/index.html
