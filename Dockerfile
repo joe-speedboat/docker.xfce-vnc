@@ -6,13 +6,13 @@ LABEL maintainer="Chris Ruettimann <chris@bitbull.ch>"
 USER root
 
 # Install custom software
-RUN apt-get update && \
-    apt-get install -y geany geany-plugins-common \
-                      libreoffice \
-                      pinta \
-	              evince && \
-                      apt-get clean -y && \
-                      cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html
+RUN apt-get update
+RUN apt-get install -y geany geany-plugins-common \
+                       libreoffice \
+                       pinta \
+	               evince
+RUN apt-get clean -y
+RUN cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html
 
 COPY che.png /headless/.config/bg_sakuli.png
 
