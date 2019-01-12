@@ -12,7 +12,8 @@ RUN apt-get install -y geany geany-plugins-common \
                        pinta \
                        evince
 RUN apt-get clean -y
-RUN cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html
+RUN cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html && \
+    sed -i 's/_resizeSession: .*/_resizeSession: true/' /headless/noVNC/core/rfb.js
 
 COPY che.png /headless/.config/bg_sakuli.png
 
