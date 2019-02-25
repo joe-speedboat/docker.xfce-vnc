@@ -1,5 +1,5 @@
 
-FROM consol/ubuntu-xfce-vnc:latest
+FROM consol/ubuntu-xfce-vnc:nightly
 LABEL maintainer="Chris Ruettimann <chris@bitbull.ch>"
 
 # change user for modifications
