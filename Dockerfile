@@ -7,6 +7,7 @@ USER root
 
 # Install custom software
 RUN apt-get update
+RUN apt-get -y dist-upgrade
 RUN apt-get install -y geany geany-plugins-common \
                        libreoffice \
                        pinta \
