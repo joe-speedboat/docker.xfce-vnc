@@ -23,6 +23,7 @@ RUN apt-get clean -y
 RUN cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html
 
 COPY che.png /headless/.config/bg_sakuli.png
+COPY RebuildDesktop.desktop /headless/Desktop/RebuildDesktop.desktop
 
 # keep this from underlying container
 EXPOSE 6901/TCP
