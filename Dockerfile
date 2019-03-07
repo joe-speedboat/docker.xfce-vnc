@@ -15,7 +15,9 @@ RUN apt-get install -y geany geany-plugins-common \
                        dnsutils \
                        curl \
                        wget \
+                       whois \
                        netcat \
+                       nmap \
                        evince
 RUN apt-get clean -y
 RUN cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html
