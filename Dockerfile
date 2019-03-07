@@ -10,6 +10,12 @@ RUN apt-get update
 RUN apt-get install -y geany geany-plugins-common \
                        libreoffice \
                        pinta \
+                       openssh-client \
+                       openssl \
+                       dnsutils \
+                       curl \
+                       wget \
+                       netcat \
                        evince
 RUN apt-get clean -y
 RUN cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html
@@ -28,7 +34,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' \
     NO_VNC_HOME=/headless/noVNC \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
-    VNC_RESOLUTION=1280x1024 \
+    VNC_RESOLUTION=1600x1050 \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false
 
