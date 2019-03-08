@@ -16,6 +16,7 @@ RUN apt-get install -y geany geany-plugins-common \
                        dnsutils \
                        curl \
                        wget \
+                       rsync \
                        whois \
                        netcat \
                        nmap \
