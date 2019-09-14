@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Rebuild Desktop
+Comment=
+Exec=pkill -9 -f /usr/bin/python
+Icon=xfce4-fsguard-plugin-warning
+Path=
+Terminal=false
+StartupNotify=false
