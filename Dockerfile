@@ -88,7 +88,7 @@ RUN find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
     find $STARTUPDIR $HOME -name '*.desktop' -exec chmod a+x {} + && \
     chgrp -R 0 $STARTUPDIR $HOME && \
     chmod -R a+rw $STARTUPDIR $HOME && \
-    find $STARTUPDIR $HOME -type d -exec chmod $verbose a+x {} + && \
+    find $STARTUPDIR $HOME -type d -exec chmod a+x {} + && \
     echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
 
 
