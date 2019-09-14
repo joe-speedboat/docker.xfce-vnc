@@ -19,6 +19,7 @@ ENV DISPLAY=:1 \
     NO_VNC_PORT=6901
 EXPOSE $VNC_PORT $NO_VNC_PORT
 
+USER root
 ### Envrionment config
 ENV HOME=/headless \
     TERM=xterm \
