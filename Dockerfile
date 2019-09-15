@@ -84,12 +84,12 @@ ADD ./src/xfce/ $HOME/
 ADD ./src/scripts $STARTUPDIR
 
 ### configure startup and set perms
-RUN find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
+RUN echo "source $STARTUPDIR/generate_container_user" >> $HOME/.bashrc && \
+    find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
     find $STARTUPDIR $HOME -name '*.desktop' -exec chmod a+x {} + && \
     chgrp -R 0 $STARTUPDIR $HOME && \
     chmod -R a+rw $STARTUPDIR $HOME && \
-    find $STARTUPDIR $HOME -type d -exec chmod a+x {} + && \
-    echo "source $STARTUPDIR/generate_container_user" >> $HOME/.bashrc
+    find $STARTUPDIR $HOME -type d -exec chmod a+x {} +
 
 
 USER 1000
