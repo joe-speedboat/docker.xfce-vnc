@@ -32,8 +32,7 @@ ENV HOME=/headless \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false \
     LANG='en_US.UTF-8' \
-    LANGUAGE='en_US:en' \
-    LC_ALL='en_US.UTF-8'
+    LANGUAGE='en_US:en'
 WORKDIR $HOME
 
 RUN apt-get update && \
