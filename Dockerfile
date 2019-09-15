@@ -89,11 +89,10 @@ RUN find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
     chgrp -R 0 $STARTUPDIR $HOME && \
     chmod -R a+rw $STARTUPDIR $HOME && \
     find $STARTUPDIR $HOME -type d -exec chmod a+x {} + && \
-    echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
+    echo "source $STARTUPDIR/generate_container_user" >> $HOME/.bashrc
 
 
-RUN useradd -ms /bin/bash  -d $HOME xfce
-USER xfce
+USER 1000
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--wait"]
