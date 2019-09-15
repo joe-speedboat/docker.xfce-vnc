@@ -32,7 +32,9 @@ ENV HOME=/headless \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false \
     LANG='en_US.UTF-8' \
-    LANGUAGE='en_US:en'
+    LANGUAGE='en_US:en' \
+    LC_ALL='en_US.UTF-8'
+
 WORKDIR $HOME
 
 RUN apt-get update && \
@@ -88,7 +90,9 @@ RUN echo "source $STARTUPDIR/generate_container_user >/dev/null 2>&1" > $HOME/.b
     find $STARTUPDIR $HOME -name '*.desktop' -exec chmod a+x {} + && \
     chgrp -R 0 $STARTUPDIR $HOME && \
     chmod -R a+rw $STARTUPDIR $HOME && \
-    find $STARTUPDIR $HOME -type d -exec chmod a+x {} +
+    find $STARTUPDIR $HOME -type d -exec chmod a+x {} + && \
+    update-locale LANG=en_US.UTF-8 && \
+    locale-gen en_US.UTF-8
 
 
 USER 1000
