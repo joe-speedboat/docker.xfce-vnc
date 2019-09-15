@@ -86,12 +86,13 @@ ADD ./src/scripts $STARTUPDIR
 
 ### configure startup and set perms
 RUN echo "source $STARTUPDIR/generate_container_user >/dev/null 2>&1" > $HOME/.bashrc && \
+    echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
     find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
     find $STARTUPDIR $HOME -name '*.desktop' -exec chmod a+x {} + && \
     chgrp -R 0 $STARTUPDIR $HOME && \
     chmod -R a+rw $STARTUPDIR $HOME && \
     find $STARTUPDIR $HOME -type d -exec chmod a+x {} + && \
-    update-locale LANG=en_US.UTF-8 && \
+    echo LANG=en_US.UTF-8 > /etc/default/locale && \
     locale-gen en_US.UTF-8
 
 
