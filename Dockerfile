@@ -25,7 +25,7 @@ ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
     INST_SCRIPTS=/headless/install \
-    NO_VNC_HOME=/usr/share/novnc \
+    NO_VNC_HOME=/headless/noVNC \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1280x1024 \
@@ -67,18 +67,18 @@ RUN apt-get update && \
     xfce4 \
     xfce4-terminal \
     xterm \
-    tigervnc-common \
-    tigervnc-standalone-server \
-    novnc \
-    websockify \
     evince && \
     apt-get purge -y pm-utils xscreensaver* && \
     apt-get -y clean
 
 
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
-RUN chmod +x -v $NO_VNC_HOME/utils/*.sh && \
-    cp -f $NO_VNC_HOME/vnc_auto.html $NO_VNC_HOME/index.html
+RUN mkdir -p $NO_VNC_HOME/utils/websockify && \
+    wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.9.0.x86_64.tar.gz | tar xz --strip 1 -C / && \
+    wget -qO- https://github.com/novnc/noVNC/archive/v1.1.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME && \
+    wget -qO- https://github.com/novnc/websockify/archive/v0.9.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify && \
+    chmod +x -v $NO_VNC_HOME/utils/*.sh && \
+    cp -f /headless/noVNC/vnc.html /headless/noVNC/index.html
 
 ### inject files
 ADD ./src/xfce/ $HOME/
