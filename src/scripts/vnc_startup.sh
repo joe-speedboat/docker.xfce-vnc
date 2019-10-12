@@ -5,19 +5,6 @@ set -e
 ## print out help
 help (){
 echo "
-USAGE:
-docker run -it -p 6901:6901 -p 5901:5901 consol/<image>:<tag> <option>
-
-IMAGES:
-consol/ubuntu-xfce-vnc
-consol/centos-xfce-vnc
-consol/ubuntu-icewm-vnc
-consol/centos-icewm-vnc
-
-TAGS:
-latest  stable version of branch 'master'
-dev     current development version of branch 'dev'
-
 OPTIONS:
 -w, --wait      (default) keeps the UI and the vncserver up until SIGINT or SIGTERM will received
 -s, --skip      skip the vnc startup and just execute the assigned command.
@@ -26,7 +13,6 @@ OPTIONS:
                 e.g. 'docker run consol/centos-xfce-vnc --debug bash'
 -h, --help      print out this help
 
-Fore more information see: https://github.com/ConSol/docker-headless-vnc-container
 "
 }
 if [[ $1 =~ -h|--help ]]; then
