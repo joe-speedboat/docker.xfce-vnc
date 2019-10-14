@@ -38,19 +38,28 @@ ENV HOME=/headless \
 WORKDIR $HOME
 
 RUN apt-get update && \
-    apt-get -y dist-upgrade && \
-    apt-get install -y \
+    apt-get -y dist-upgrade
+
+RUN apt-get install -y \
     chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     geany geany-plugins-common \
     firefox \
     libreoffice \
     libnss-wrapper \
+    ttf-wqy-zenhei \
     gettext \
     pinta \
+    xfce4 \
+    xfce4-terminal \
+    xterm \
+    evince 
+
+RUN apt-get install -y \
     openssh-client \
     openssl \
     dnsutils \
     curl \
+    screen \
     wget \
     rsync \
     whois \
@@ -62,13 +71,9 @@ RUN apt-get update && \
     locales \
     bzip2 \
     python-numpy \
-    ttf-wqy-zenhei \
-    supervisor \
-    xfce4 \
-    xfce4-terminal \
-    xterm \
-    evince && \
-    apt-get purge -y pm-utils xscreensaver* && \
+    supervisor
+
+RUN apt-get purge -y pm-utils xscreensaver* && \
     apt-get -y clean
 
 
