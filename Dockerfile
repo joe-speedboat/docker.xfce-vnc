@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2019-09-14
+ENV REFRESHED_AT 2019-11-18
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -90,7 +90,7 @@ ADD ./src/xfce/ $HOME/
 ADD ./src/scripts $STARTUPDIR
 
 ### configure startup and set perms
-RUN echo "source $STARTUPDIR/generate_container_user >/dev/null 2>&1" > $HOME/.bashrc && \
+RUN echo "source $STARTUPDIR/generate_container_user >>$HOME/.generate_container_user.log 2>&1" > $HOME/.bashrc && \
     echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
     find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
     find $STARTUPDIR $HOME -name '*.desktop' -exec chmod a+x {} + && \
