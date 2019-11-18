@@ -2,16 +2,7 @@
 ### every exit != 0 fails the script
 set -e
 
-# should also source $STARTUPDIR/generate_container_user
-source $HOME/.bashrc
-
-# add `--skip` to startup args, to skip the VNC startup procedure
-if [[ $1 =~ -s|--skip ]]; then
-    echo -e "\n\n------------------ SKIP VNC STARTUP -----------------"
-    echo -e "\n\n------------------ EXECUTE COMMAND ------------------"
-    echo "Executing command: '${@:2}'"
-    exec "${@:2}"
-fi
+## argument handling
 if [[ $1 =~ -d|--debug ]]; then
     echo -e "\n\n------------------ DEBUG VNC STARTUP -----------------"
     export DEBUG=true
@@ -23,6 +14,29 @@ cleanup () {
     exit 0
 }
 trap cleanup SIGINT SIGTERM
+
+## prepare env
+if [ x"$USER_ID" != x"0" ]; then
+    cat /etc/passwd > $NSS_WRAPPER_PASSWD
+    cat /etc/group > $NSS_WRAPPER_GROUP
+    echo "default:x:${USER_ID}:${GROUP_ID}:User:${HOME}:/bin/bash" >> $NSS_WRAPPER_PASSWD
+    echo "default:x:${GROUP_ID}:" >> $NSS_WRAPPER_GROUP
+
+    echo 'export NSS_WRAPPER_PASSWD=/tmp/passwd' >> /etc/bash.bashrc
+    echo 'export NSS_WRAPPER_GROUP=/tmp/group' >> /etc/bash.bashrc
+
+    if [ -r /usr/lib/libnss_wrapper.so ]; then
+        echo "LD_PRELOAD=/usr/lib/libnss_wrapper.so" >> /etc/bash.bashrc
+    elif [ -r /usr/lib64/libnss_wrapper.so ]; then
+        echo "LD_PRELOAD=/usr/lib64/libnss_wrapper.so" >> /etc/bash.bashrc
+    else
+        echo "no libnss_wrapper.so installed!"
+        exit 1
+    fi
+fi
+cp /etc/skel/.bashrc > $HOME/.bashrc
+cp /etc/skel/.profile > $HOME/.profile
+source /etc/bash.bashrc
 
 ## resolve_vnc_connection
 VNC_IP=$(hostname -i)
@@ -63,7 +77,10 @@ echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTIO
 if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
 vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUPDIR/no_vnc_startup.log
 echo -e "start window manager\n..."
-$HOME/wm_startup.sh &> $STARTUPDIR/wm_startup.log
+xset -dpms &
+xset s noblank &
+xset s off &
+/usr/bin/startxfce4 --replace &> $HOME/.wm.log &
 
 ## log connect options
 echo -e "\n\n------------------ VNC environment started ------------------"
