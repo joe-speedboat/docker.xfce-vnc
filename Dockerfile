@@ -90,8 +90,7 @@ ADD ./src/xfce/ $HOME/
 ADD ./src/scripts $STARTUPDIR
 
 ### configure startup and set perms
-RUN echo "source $STARTUPDIR/generate_container_user >>$HOME/.generate_container_user.log 2>&1" > $HOME/.bashrc && \
-    echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
+RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
     find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
     find $STARTUPDIR $HOME -name '*.desktop' -exec chmod a+x {} + && \
     chgrp -R 0 $STARTUPDIR $HOME && \
