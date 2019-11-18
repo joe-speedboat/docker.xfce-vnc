@@ -29,5 +29,3 @@ if [ x"$USER_ID" != x"0" ]; then
     export LD_PRELOAD
 fi
 
-echo "user $USER created, this script should not run twice"
-sed -i '/generate_container_user/d' $HOME/.bashrc
