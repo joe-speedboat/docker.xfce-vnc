@@ -3,7 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2019-11-18
+ENV REFRESHED_AT 2020-01-21-08:23
+ENV VERSION 1.2.4
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -91,6 +92,7 @@ ADD ./src/scripts $STARTUPDIR
 
 ### configure startup and set perms
 RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
+    /bin/sed -i '1 a. /headless/.bashrc' /etc/xdg/xfce4/xinitrc && \
     find $STARTUPDIR $HOME -name '*.sh' -exec chmod a+x {} + && \
     find $STARTUPDIR $HOME -name '*.desktop' -exec chmod a+x {} + && \
     chgrp -R 0 $STARTUPDIR $HOME && \
@@ -102,7 +104,7 @@ RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HO
 
 USER 1000
 
-ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
+ENTRYPOINT ["/dockerstartup/desktop_startup.sh"]
 CMD ["--wait"]
 
 
