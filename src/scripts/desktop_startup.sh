@@ -19,6 +19,7 @@ trap cleanup SIGINT SIGTERM
 cp /etc/skel/.bashrc $HOME/.bashrc
 cp /etc/skel/.profile $HOME/.profile
 
+mkdir $HOME/.vnc/
 echo '#!/bin/sh
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
