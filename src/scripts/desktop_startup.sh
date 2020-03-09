@@ -20,7 +20,9 @@ cp /etc/skel/.bashrc $HOME/.bashrc
 cp /etc/skel/.profile $HOME/.profile
 
 mkdir $HOME/.vnc/
-echo '#!/bin/sh
+echo '#!/bin/bash
+. $HOME/.bashrc
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 xset -dpms &
@@ -28,7 +30,7 @@ xset s noblank &
 xset s off &
 while true
 do
-   /bin/xfce4-session
+   xfce4-session
    sleep 2
 done
 ' > $HOME/.vnc/xstartup
