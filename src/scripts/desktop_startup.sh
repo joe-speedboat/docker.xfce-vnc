@@ -35,14 +35,14 @@ done
 chmod 755 $HOME/.vnc/xstartup
 
 if [ x"$USER_ID" != x"0" ]; then
+    export NSS_WRAPPER_PASSWD=/tmp/passwd
+    export NSS_WRAPPER_GROUP=/tmp/group
     cat /etc/passwd > $NSS_WRAPPER_PASSWD
     cat /etc/group > $NSS_WRAPPER_GROUP
     export USER_ID=$(id -u)
     export GROUP_ID=$(id -u)
     echo "default:x:${USER_ID}:${GROUP_ID}:User:${HOME}:/bin/bash" >> $NSS_WRAPPER_PASSWD
     echo "default:x:${GROUP_ID}:" >> $NSS_WRAPPER_GROUP
-    export NSS_WRAPPER_PASSWD=/tmp/passwd
-    export NSS_WRAPPER_GROUP=/tmp/group
     echo 'export NSS_WRAPPER_PASSWD=/tmp/passwd' >> $HOME/.bashrc
     echo 'export NSS_WRAPPER_GROUP=/tmp/group' >> $HOME/.bashrc
     if [ -r /usr/lib/libnss_wrapper.so ]; then
