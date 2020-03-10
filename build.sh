@@ -8,7 +8,8 @@ test -f Dockerfile || (echo "ERROR: Dockerfile not found" ; exit 1)
 sed -i "s/^ENV REFRESHED_AT.*/ENV REFRESHED_AT $(date '+%Y-%m-%d-%H:%M')/" Dockerfile
 sed -i "s/^ENV VERSION.*/ENV VERSION $VERSION/" Dockerfile
 
-[ "$1" == '-a' ] && exit 0
+git add -A
+git commit -a -m "automated build"
 
 docker system prune -a -f
 docker build -t $REG:latest -t $REG:$VERSION --build-arg CACHEBUST=$(date +%s) .
