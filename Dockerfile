@@ -45,6 +45,7 @@ RUN apt-get install -y \
     chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     geany geany-plugins-common \
     firefox \
+    torbrowser-launcher \
     libreoffice \
     libnss-wrapper \
     ttf-wqy-zenhei \
