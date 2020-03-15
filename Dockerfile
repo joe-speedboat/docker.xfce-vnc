@@ -42,7 +42,6 @@ RUN apt-get update && \
     apt-get -y dist-upgrade
 
 RUN apt-get install -y \
-    ansible \
     chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     geany geany-plugins-common \
     firefox \
@@ -54,21 +53,23 @@ RUN apt-get install -y \
     pinta \
     xfce4 \
     xfce4-terminal \
-    terminator \
     xterm \
     evince 
 
 RUN apt-get install -y \
+    ansible \
     openssh-client \
     openssl \
     dnsutils \
     curl \
     screen \
+    smbclient \
     wget \
     rsync \
     whois \
     netcat \
     nmap \
+    terminator \
     vim \
     wget \
     net-tools \
