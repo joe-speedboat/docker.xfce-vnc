@@ -53,6 +53,7 @@ RUN apt-get install -y \
     pinta \
     xfce4 \
     xfce4-terminal \
+    terminator \
     xterm \
     evince 
 
