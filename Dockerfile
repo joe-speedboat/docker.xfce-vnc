@@ -42,6 +42,7 @@ RUN apt-get update && \
     apt-get -y dist-upgrade
 
 RUN apt-get install -y \
+    ansible \
     chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     geany geany-plugins-common \
     firefox \
