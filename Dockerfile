@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-03-16-15:29
+ENV REFRESHED_AT 2020-03-16-15:40
 ENV VERSION 1.3.4
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
@@ -25,7 +25,6 @@ USER root
 ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
-    INST_SCRIPTS=/headless/install \
     NO_VNC_HOME=/headless/noVNC \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
@@ -34,8 +33,7 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false \
     LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
-    LC_ALL='en_US.UTF-8' \
-    PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/bin'
+    LC_ALL='en_US.UTF-8'
 
 WORKDIR $HOME
 
@@ -57,8 +55,8 @@ RUN apt-get install -y \
     evince 
 
 RUN mkdir -p $HOME/bin $HOME/.local/share/applications && cd $HOME/bin && \
-    wget -q https://www.torproject.org$(wget -q -O- https://www.torproject.org/download/ \
-       | grep linux | grep download | sed 's/.*href="//' | cut -d\" -f1 ) -O tor-browser_en-US.tar.xz && \
+    curl -s https://www.torproject.org$(curl -s https://www.torproject.org/download/ \
+       | grep linux | grep download | sed 's/.*href="//' | cut -d\" -f1 ) -o tor-browser_en-US.tar.xz && \
     tar xf tor-browser_en-US.tar.xz && \
     rm -f tor-browser_en-US.tar.xz && \
     ICON="$HOME/.local/share/applications/start-tor-browser.desktop" && \
