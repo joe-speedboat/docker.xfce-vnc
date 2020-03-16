@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-03-16-13:20
+ENV REFRESHED_AT 2020-03-16-14:09
 ENV VERSION 1.3.4
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
@@ -35,6 +35,7 @@ ENV HOME=/headless \
     LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
     LC_ALL='en_US.UTF-8'
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/bin
 
 WORKDIR $HOME
 
