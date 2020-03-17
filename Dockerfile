@@ -3,8 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-03-17-09:06
-ENV VERSION 1.3.5
+ENV REFRESHED_AT 2020-03-17-12:01
+ENV VERSION 1.3.6
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -64,7 +64,8 @@ RUN mkdir -p $HOME/bin $HOME/.local/share/applications && cd $HOME/bin && \
     echo 'Name=Tor Browser Setup' >> $ICON && \
     echo 'Categories=Network;WebBrowser;Security;' >> $ICON && \
     echo 'Exec=$HOME/bin/tor-browser_en-US/Browser/start-tor-browser --detach' >> $ICON && \
-    echo 'Icon=web-browser' >> $ICON
+    echo 'Icon=web-browser' >> $ICON && \
+    chmod a+rx $HOME/bin/tor-browser_en-US/Browser/*
 
 RUN apt-get install -y \
     ansible \
