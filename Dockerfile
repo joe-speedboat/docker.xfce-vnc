@@ -55,8 +55,7 @@ RUN apt-get install -y \
     evince 
 
 RUN mkdir -p $HOME/bin $HOME/.local/share/applications && cd $HOME/bin && \
-    curl -s https://www.torproject.org$(curl -s https://www.torproject.org/download/ \
-       | grep linux | grep download | sed 's/.*href="//' | cut -d\" -f1 ) -o tor-browser_en-US.tar.xz && \
+    curl -s https://dist.torproject.org$(curl -s https://www.torproject.org/download/ | grep linux | grep download | sed 's/.*href=..dist//' | cut -d\" -f1 ) -o tor-browser_en-US.tar.xz && \
     tar xf tor-browser_en-US.tar.xz && \
     rm -f tor-browser_en-US.tar.xz && \
     ICON="$HOME/.local/share/applications/start-tor-browser.desktop" && \
