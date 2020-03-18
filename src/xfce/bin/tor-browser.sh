@@ -8,7 +8,7 @@ TFILE="tor-browser_en-US.tar.xz"
 cd
 test -d $PDIR || mkdir $PDIR
 cd $PDIR
-test -d tor-browser*
+test -d tor-browser_en-US
 if [ $? -ne 0 ]
 then
    curl -s $TURL -o $TFILE
