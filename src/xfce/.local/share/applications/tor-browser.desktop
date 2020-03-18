@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Tor Browser Setup
+Categories=Network;WebBrowser;Security;
+Exec=/headless/bin/tor-browser.sh
+Icon=web-browser
+
