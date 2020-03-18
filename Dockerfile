@@ -54,19 +54,6 @@ RUN apt-get install -y \
     xterm \
     evince 
 
-RUN mkdir -p $HOME/bin $HOME/.local/share/applications && cd $HOME/bin && \
-    curl -s https://dist.torproject.org$(curl -s https://www.torproject.org/download/ | grep linux | grep download | sed 's/.*href=..dist//' | cut -d\" -f1 ) -o tor-browser_en-US.tar.xz && \
-    tar xf tor-browser_en-US.tar.xz && \
-    rm -f tor-browser_en-US.tar.xz && \
-    ICON="$HOME/.local/share/applications/start-tor-browser.desktop" && \
-    echo '[Desktop Entry]' > $ICON && \
-    echo 'Type=Application' >> $ICON && \
-    echo 'Name=Tor Browser Setup' >> $ICON && \
-    echo 'Categories=Network;WebBrowser;Security;' >> $ICON && \
-    echo 'Exec=$HOME/bin/tor-browser_en-US/Browser/start-tor-browser --detach' >> $ICON && \
-    echo 'Icon=web-browser' >> $ICON && \
-    chmod a+rx $HOME/bin/tor-browser_en-US/Browser/*
-
 RUN apt-get install -y \
     ansible \
     openssh-client \
