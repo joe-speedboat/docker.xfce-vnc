@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-03-21-15:12
+ENV REFRESHED_AT 2020-03-21-15:14
 ENV VERSION 1.3.9
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
@@ -43,7 +43,7 @@ RUN apt-get update && \
 RUN apt-get install -y \
     chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     geany geany-plugins-common \
-    imagemagic \
+    imagemagick \
     firefox \
     libreoffice \
     libnss-wrapper \
