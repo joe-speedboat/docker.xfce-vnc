@@ -43,6 +43,7 @@ RUN apt-get update && \
 RUN apt-get install -y \
     chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     geany geany-plugins-common \
+    imagemagic \
     firefox \
     libreoffice \
     libnss-wrapper \

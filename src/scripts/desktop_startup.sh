@@ -19,6 +19,9 @@ trap cleanup SIGINT SIGTERM
 cp /etc/skel/.bashrc $HOME/.bashrc
 cp /etc/skel/.profile $HOME/.profile
 
+# prepare desktop background
+convert -pointsize 20 -fill yellow -draw "text 50,50 $HOSTNAME " $HOME/.config/bg_orig.png HOME/.config/bg.png
+
 mkdir $HOME/.vnc/
 echo '#!/bin/bash
 . $HOME/.bashrc
