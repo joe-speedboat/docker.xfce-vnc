@@ -20,7 +20,8 @@ cp /etc/skel/.bashrc $HOME/.bashrc
 cp /etc/skel/.profile $HOME/.profile
 
 # prepare desktop background
-convert -pointsize 20 -fill black -draw "text 100,60 '                    BITBULL XFCE Docker Desktop
+convert -pointsize 20 -fill black -draw "text 100,60 'BITBULL XFCE Docker Desktop
+
 HOST: $HOSTNAME 
 VERSION: $VERSION'" $HOME/.config/bg_orig.png $HOME/.config/bg.png
 
