@@ -24,9 +24,9 @@ git commit -a -m "automated build, RELEASE: $RELEASE"
 if [ "$1" == '-s' ]
 then
    docker system prune -a -f
-   docker build -t $REG:$RELEASE -t $REG:$VERSION --build-arg CACHEBUST=$(date +%s) .
+   docker build -t $REG:$RELEASE -t $REG:$VERSION .
 else
-   docker build -t $REG:$RELEASE -t $REG:$VERSION
+   docker build -t $REG:$RELEASE -t $REG:$VERSION --build-arg CACHEBUST=$(date +%s) .
 fi
 docker push $REG:$RELEASE
 docker push $REG:$VERSION
