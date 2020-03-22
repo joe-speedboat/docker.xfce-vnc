@@ -9,7 +9,10 @@ then
    RELEASE=stable
 fi
 
-echo "INFO: Building Release: $RELEASE   /   VERSION: $VERSION"
+echo "--------------------------------------------------
+INFO: Building Release: $RELEASE   /   VERSION: $VERSION
+--------------------------------------------------
+"
 
 test -f Dockerfile || (echo "ERROR: Dockerfile not found" ; exit 1)
 sed -i "s/^ENV REFRESHED_AT.*/ENV REFRESHED_AT $(date '+%Y-%m-%d-%H:%M')/" Dockerfile
@@ -18,8 +21,13 @@ sed -i "s/^ENV VERSION.*/ENV VERSION $VERSION/" Dockerfile
 git add -A
 git commit -a -m "automated build, RELEASE: $RELEASE"
 
-docker system prune -a -f
-docker build -t $REG:$RELEASE -t $REG:$VERSION --build-arg CACHEBUST=$(date +%s) .
+if [ "$1" == '-s' ]
+then
+   docker system prune -a -f
+   docker build -t $REG:$RELEASE -t $REG:$VERSION --build-arg CACHEBUST=$(date +%s) .
+else
+   docker build -t $REG:$RELEASE -t $REG:$VERSION
+fi
 docker push $REG:$RELEASE
 docker push $REG:$VERSION
 
