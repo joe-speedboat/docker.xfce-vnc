@@ -20,7 +20,7 @@ cp /etc/skel/.bashrc $HOME/.bashrc
 cp /etc/skel/.profile $HOME/.profile
 
 # prepare desktop background
-convert -pointsize 20 -fill black -draw "text 100,60 $HOSTNAME " $HOME/.config/bg_orig.png $HOME/.config/bg.png
+convert -pointsize 20 -fill black -draw "text 100,60 HOSTNAME: $HOSTNAME       VERSION: $VERSION" $HOME/.config/bg_orig.png $HOME/.config/bg.png
 
 mkdir $HOME/.vnc/
 echo '#!/bin/bash
