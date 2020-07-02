@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-07-02-10:09
+ENV REFRESHED_AT 2020-07-02-10:22
 ENV VERSION 1.4.5
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
