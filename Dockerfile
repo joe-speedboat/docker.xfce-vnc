@@ -37,9 +37,6 @@ ENV HOME=/headless \
 
 WORKDIR $HOME
 
-RUN apt-get update && \
-    apt-get -y dist-upgrade
-
 RUN apt-get install -y \
     geany geany-plugins-common \
     imagemagick \
