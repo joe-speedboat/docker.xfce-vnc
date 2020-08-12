@@ -1,6 +1,6 @@
 #!/bin/bash
 ### every exit != 0 fails the script
-set -e
+# set -e
 
 ## argument handling
 if [[ $1 =~ -d|--debug ]]; then
