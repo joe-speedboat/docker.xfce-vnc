@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-08-12-07:16
+ENV REFRESHED_AT 2020-08-12-07:17
 ENV VERSION 1.4.9
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
@@ -40,22 +40,22 @@ WORKDIR $HOME
 RUN apt-get update
 
 RUN apt-get install -y \
-    geany geany-plugins-common \
+#    geany geany-plugins-common \
     imagemagick \
-    firefox \
-    libreoffice \
+#    firefox \
+#    libreoffice \
     libnss-wrapper \
     ttf-wqy-zenhei \
     gettext \
-    pinta \
+#    pinta \
     xfce4 \
     xfce4-terminal \
     xterm \
     evince 
 
 RUN apt-get install -y \
-    ansible \
-    git \
+#    ansible \
+#    git \
     unzip \
     openssh-client \
     openssl \
