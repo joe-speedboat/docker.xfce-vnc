@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-08-17-08:40
+ENV REFRESHED_AT 2020-08-17-08:50
 ENV VERSION 1.4.9
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
@@ -78,7 +78,7 @@ RUN apt-get install -y \
     supervisor
 
 ### noVNC needs python2 and ubuntu docker image is not providing any default python
-RUN test -e /usr/bin/python && rm -f /usr/bin/python ; ln -s /usr/bin/python /usr/bin/python2
+RUN test -e /usr/bin/python && rm -f /usr/bin/python ; ln -s /usr/bin/python3 /usr/bin/python
 
 RUN apt-get purge -y pm-utils xscreensaver* && \
     apt-get -y clean
