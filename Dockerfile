@@ -3,7 +3,7 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2020-08-12-07:35
+ENV REFRESHED_AT 2020-08-17-08:21
 ENV VERSION 1.4.9
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
@@ -77,9 +77,11 @@ RUN apt-get install -y \
     python-numpy \
     supervisor
 
+### noVNC needs python2 and ubuntu docker image is not providing any default python
+RUN rm -f /usr/bin/python && ln -s /usr/bin/python /usr/bin/python2
+
 RUN apt-get purge -y pm-utils xscreensaver* && \
     apt-get -y clean
-
 
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify && \
