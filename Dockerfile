@@ -78,7 +78,7 @@ RUN apt-get install -y \
     supervisor
 
 ### noVNC needs python2 and ubuntu docker image is not providing any default python
-RUN rm -f /usr/bin/python && ln -s /usr/bin/python /usr/bin/python2
+RUN test -e /usr/bin/python && rm -f /usr/bin/python ; ln -s /usr/bin/python /usr/bin/python2
 
 RUN apt-get purge -y pm-utils xscreensaver* && \
     apt-get -y clean
