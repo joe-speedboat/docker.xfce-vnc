@@ -40,22 +40,22 @@ WORKDIR $HOME
 RUN apt-get update
 
 RUN apt-get install -y \
-#    geany geany-plugins-common \
+    geany geany-plugins-common \
     imagemagick \
-#    firefox \
-#    libreoffice \
+    firefox \
+    libreoffice \
     libnss-wrapper \
     ttf-wqy-zenhei \
     gettext \
-#    pinta \
+    pinta \
     xfce4 \
     xfce4-terminal \
     xterm \
     evince 
 
 RUN apt-get install -y \
-#    ansible \
-#    git \
+    ansible \
+    git \
     unzip \
     openssh-client \
     openssl \
@@ -105,7 +105,6 @@ RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HO
     find $STARTUPDIR $HOME -type d -exec chmod a+x {} + && \
     echo LANG=en_US.UTF-8 > /etc/default/locale && \
     locale-gen en_US.UTF-8
-
 
 USER 1000
 
