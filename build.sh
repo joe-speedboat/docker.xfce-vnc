@@ -4,10 +4,6 @@ REG=docker.io/christian773/xfce-vnc
 REG_PATT=$(echo $REG | cut -d/ -f2-)
 VERSION=$(cat VERSION)
 RELEASE=latest
-if [ "$1" == '-s' ]
-then
-   RELEASE=stable
-fi
 
 echo "--------------------------------------------------
 INFO: Building Release: $RELEASE   /   VERSION: $VERSION
@@ -21,13 +17,9 @@ sed -i "s/^ENV VERSION.*/ENV VERSION $VERSION/" Dockerfile
 git add -A
 git commit -a -m "automated build, RELEASE: $RELEASE"
 
-if [ "$1" == '-s' ]
-then
-   docker system prune -a -f
-   docker build -t $REG:$RELEASE -t $REG:$VERSION .
-else
-   docker build -t $REG:$RELEASE -t $REG:$VERSION --build-arg CACHEBUST=$(date +%s) .
-fi
+docker system prune -a -f
+docker build -t $REG:$VERSION .
+docker tag $REG:$VERSION $REG:$RELEASE
 docker push $REG:$RELEASE
 docker push $REG:$VERSION
 
