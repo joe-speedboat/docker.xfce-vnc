@@ -23,7 +23,7 @@ cp /etc/skel/.profile $HOME/.profile
 convert -pointsize 20 -fill black -draw "text 100,60 'BITBULL XFCE Docker Desktop
 
 HOST: $HOSTNAME 
-VERSION: $VERSION'" $HOME/.config/bg_orig.png $HOME/.config/bg.png
+VERSION: $VERSION      BUILD DATE: $REFRESHED_AT'" $HOME/.config/bg_orig.png $HOME/.config/bg.png
 
 mkdir $HOME/.vnc/
 echo '#!/bin/bash
