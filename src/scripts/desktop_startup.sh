@@ -46,7 +46,7 @@ chmod 755 $HOME/.vnc/xstartup
 if [ x"$USER_ID" != x"0" ]; then
     export NSS_WRAPPER_PASSWD=/tmp/passwd
     export NSS_WRAPPER_GROUP=/tmp/group
-    cat /etc/passwd > $NSS_WRAPPER_PASSWD
+    cat /etc/passwd | grep -v $HOME > $NSS_WRAPPER_PASSWD
     cat /etc/group > $NSS_WRAPPER_GROUP
     export USER_ID=$(id -u)
     export GROUP_ID=$(id -u)
