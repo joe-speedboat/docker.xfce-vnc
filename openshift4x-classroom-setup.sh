@@ -18,7 +18,7 @@ do
    URL=$HOST$NR.$DOMAIN
    PASSWORD=$(uuidgen  | sed 's/-//g')
    oc new-app --name=$HOST$NR --docker-image=docker.io/christian773/xfce-vnc:latest VNC_PW=$PASSWORD
-   oc set volume dc/$HOST$NR --add --name=$PROJECT -t pvc --overwrite --claim-size=5G --claim-mode=ReadWriteMany --mount-path=/headless/Desktop/data --claim-name=$PROJECT
+   oc set volume deployment/$HOST$NR --add --name=$PROJECT -t pvc --overwrite --claim-size=5G --claim-mode=ReadWriteMany --mount-path=/headless/Desktop/data --claim-name=$PROJECT
       oc create route edge --service $HOST$NR --hostname=$URL --port=6901
    echo "https://$URL?password=$PASSWORD&true_color=1&reconnect=1&autoconnect=1&resize=remote" >> $PROJECT-inventory.txt
 done
