@@ -3,8 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2021-04-22-07:19
-ENV VERSION 1.5.65
+ENV REFRESHED_AT 2021-04-26-03:01
+ENV VERSION 1.5.66
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -76,6 +76,14 @@ RUN apt-get install -y \
     bzip2 \
     python-numpy \
     supervisor
+
+RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
+    install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ && \
+    echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list && \
+    rm -f packages.microsoft.gpg && \
+    apt-get -y install apt-transport-https && \
+    apt-get update && \
+    apt-get -y install code
 
 ### noVNC needs python2 and ubuntu docker image is not providing any default python
 RUN test -e /usr/bin/python && rm -f /usr/bin/python ; ln -s /usr/bin/python3 /usr/bin/python
