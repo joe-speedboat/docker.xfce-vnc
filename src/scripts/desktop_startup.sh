@@ -89,6 +89,7 @@ if [[ $VNC_VIEW_ONLY == "true" ]]; then
 fi
 echo "$VNC_PW" | vncpasswd -f >> $PASSWD_PATH
 chmod 600 $PASSWD_PATH
+unset -v VNC_PW
 
 
 ## start vncserver and noVNC webclient
