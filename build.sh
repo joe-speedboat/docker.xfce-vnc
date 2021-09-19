@@ -1,7 +1,6 @@
 #!/bin/sh -e
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 REG=docker.io/christian773/xfce-vnc
-REG_PATT=$(echo $REG | cut -d/ -f2-)
 VERSION=$(cat VERSION)
 RELEASE=latest
 
