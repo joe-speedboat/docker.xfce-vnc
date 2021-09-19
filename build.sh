@@ -26,6 +26,6 @@ echo "Done,
 If you want to push this release with stable tag as well,
 do your testing now and hit <ENTER>.
 If not, type <CTRL>+<C>"
-read
+read x
 docker tag $REG:$VERSION $REG:stable
 docker push $REG:stable
