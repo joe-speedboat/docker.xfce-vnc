@@ -3,8 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2021-09-19-14:46
-ENV VERSION 1.6.02
+ENV REFRESHED_AT 2021-09-20-03:01
+ENV VERSION 1.6.3
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -39,7 +39,7 @@ WORKDIR $HOME
 
 RUN apt-get update
 
-RUN apt-get install -y locales language-pack-en language-pack-en-base ; update-locale 
+RUN apt-get install -y apt-utils locales language-pack-en language-pack-en-base ; update-locale 
 
 RUN apt-get install -y \
     geany geany-plugins-common \
