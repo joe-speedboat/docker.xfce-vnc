@@ -3,8 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2021-09-20-03:01
-ENV VERSION 1.6.3
+ENV REFRESHED_AT 2021-11-18-09:11
+ENV VERSION 1.7.0
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -78,7 +78,9 @@ RUN apt-get install -y \
     locales \
     bzip2 \
     python-numpy \
-    supervisor
+    supervisor \
+    xdotool \
+    xautomation
 
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
     install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ && \
