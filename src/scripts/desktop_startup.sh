@@ -54,12 +54,9 @@ if [ x"$USER_ID" != x"0" ]; then
     echo "default:x:${GROUP_ID}:" >> $NSS_WRAPPER_GROUP
     echo 'export NSS_WRAPPER_PASSWD=/tmp/passwd' >> $HOME/.bashrc
     echo 'export NSS_WRAPPER_GROUP=/tmp/group' >> $HOME/.bashrc
-    if [ -r /usr/lib/libnss_wrapper.so ]; then
+    if [ -r /usr/lib/x86_64-linux-gnu/libnss_wrapper.so ]; then
         export LD_PRELOAD=/usr/lib/libnss_wrapper.so
         echo "export LD_PRELOAD=/usr/lib/libnss_wrapper.so" >> $HOME/.bashrc
-    elif [ -r /usr/lib64/libnss_wrapper.so ]; then
-        export LD_PRELOAD=/usr/lib64/libnss_wrapper.so
-        echo "export LD_PRELOAD=/usr/lib64/libnss_wrapper.so" >> $HOME/.bashrc
     else
         echo "no libnss_wrapper.so installed!"
         exit 1
