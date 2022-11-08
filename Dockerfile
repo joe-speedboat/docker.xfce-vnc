@@ -3,8 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2022-10-24-01:01
-ENV VERSION 1.7.28
+ENV REFRESHED_AT 2022-11-08-17:41
+ENV VERSION 1.7.29
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -108,6 +108,9 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify && \
 ### inject files
 ADD ./src/xfce/ $HOME/
 ADD ./src/scripts $STARTUPDIR
+
+ADD ./src/etc /
+RUN add-apt-repository ppa:mozillateam/ppa
 
 ### configure startup and set perms
 RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
