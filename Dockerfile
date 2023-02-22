@@ -3,8 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2023-02-20-01:01
-ENV VERSION 1.7.44
+ENV REFRESHED_AT 2023-02-22-06:23
+ENV VERSION 1.7.45
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -44,6 +44,7 @@ RUN apt-get install -y apt-utils locales language-pack-en language-pack-en-base 
 RUN apt-get install -y \
     geany geany-plugins-common \
     imagemagick \
+    chromium \
     firefox \
     libreoffice \
     libnss-wrapper \
