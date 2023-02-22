@@ -3,8 +3,8 @@
 FROM ubuntu:latest
 
 MAINTAINER Chris Ruettimann "chris@bitbull.ch"
-ENV REFRESHED_AT 2023-02-22-06:23
-ENV VERSION 1.7.45
+ENV REFRESHED_AT 2023-02-22-06:28
+ENV VERSION 1.7.46
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
@@ -41,11 +41,16 @@ RUN apt-get update
 
 RUN apt-get install -y apt-utils locales language-pack-en language-pack-en-base ; update-locale 
 
+RUN add-apt-repository ppa:mozillateam/ppa ; echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+' > /etc/apt/preferences.d/mozilla-firefox ; echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' > /etc/apt/apt.conf.d/51unattended-upgrades-firefox 
+
 RUN apt-get install -y \
     geany geany-plugins-common \
-    imagemagick \
-    chromium \
     firefox \
+    imagemagick \
     libreoffice \
     libnss-wrapper \
     ttf-wqy-zenhei \
