@@ -25,4 +25,4 @@ then
    echo "Exec=$HOME/bin/tor-browser.sh" >> $ICON
    echo 'Icon=web-browser' >> $ICON
 fi
-exec $HOME/bin/tor-browser_en-US/Browser/start-tor-browser --detach
+exec $HOME/bin/tor-browser/Browser/start-tor-browser --detach
