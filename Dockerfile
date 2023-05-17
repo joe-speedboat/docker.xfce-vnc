@@ -46,6 +46,7 @@ RUN add-apt-repository ppa:mozillateam/ppa ; echo -n 'Package: * \nPin: release 
 RUN apt-get install -y \
     geany geany-plugins-common \
     firefox \
+    midori \
     imagemagick \
     libreoffice \
     libnss-wrapper \
